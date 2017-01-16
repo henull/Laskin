@@ -34,7 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="@string/CA" />
+                android:text="@string/CA"
+                android:onClick="ClearallPressed"/>
 
             <Button
                 android:id="@+id/buttonC"
@@ -173,7 +174,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:text="@string/comma" />
+                android:text="@string/comma"
+                android:onClick="CommaPressed"/>
 
             <Button
                 android:id="@+id/buttonEnt"

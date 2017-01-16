@@ -61,52 +61,61 @@ public class Laskin extends AppCompatActivity {
             resultbox.append("9");
             calculation += "9";
         } else {
-            Toast t = Toast.makeText(this,"This shouldn't happen.", Toast.LENGTH_SHORT);
+            Toast t = Toast.makeText(this, "This shouldn't happen.", Toast.LENGTH_SHORT);
             t.show();
             //TODO: Handle error, shouldn't be here unless number 99button pressed.
         }
     }
 
-    public void EnterPressed(View v){
-        TextView resultbox = (TextView) findViewById(R.id.resultBox);
+    public void EnterPressed(View v) {
+        final TextView resultbox = (TextView) findViewById(R.id.resultBox);
         Double result = 0.0;
         try {
             Expression expression = new Expression(resultbox.getText().toString());
             result = Double.parseDouble(expression.eval().toString());
-        }catch(Exception e){ //java.lang.ArithmeticException //EmptyExpression
-            Toast t = Toast.makeText(this,e.getMessage(), Toast.LENGTH_SHORT);
+        } catch (Exception e) { //java.lang.ArithmeticException //EmptyExpression
+            Toast t = Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
             t.show();
         }
-        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
         dlgAlert.setMessage(result.toString());
         dlgAlert.setTitle("Result");
-        dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+        dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                // call your code here
+                resultbox.setText(""); //TODO: siirrä vastaus ylempään textviewiin lasku+"="+result
             }
         });
         dlgAlert.show();
-
     }
 
-    public void ClearPressed(View v){
+    public void CommaPressed(View v){
+        TextView resultbox = (TextView) findViewById(R.id.resultBox);
+        resultbox.append(",");
+    }
+
+    public void ClearPressed(View v) {
         TextView resultbox = (TextView) findViewById(R.id.resultBox);
         resultbox.setText("");
     }
 
-    public void OperationPressed(View v){
+    public void ClearallPressed(View v) {
+        TextView resultbox = (TextView) findViewById(R.id.resultBox);
+        resultbox.setText("");
+    }
+
+    public void OperationPressed(View v) {
         TextView resultbox = (TextView) findViewById(R.id.resultBox);
 
         if (v == findViewById(R.id.buttonSum)) {
             resultbox.append("+");
             calculation += "+";
-        }else if (v == findViewById(R.id.buttonMin)) {
+        } else if (v == findViewById(R.id.buttonMin)) {
             resultbox.append("-");
             calculation += "-";
-        }else if (v == findViewById(R.id.buttonDiv)) {
+        } else if (v == findViewById(R.id.buttonDiv)) {
             resultbox.append("/");
             calculation += "/";
-        }else if (v == findViewById(R.id.buttonMul)) {
+        } else if (v == findViewById(R.id.buttonMul)) {
             resultbox.append("*");
             calculation += "*";
         }

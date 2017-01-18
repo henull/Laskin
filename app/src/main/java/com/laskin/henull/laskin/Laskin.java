@@ -93,6 +93,7 @@ public class Laskin extends AppCompatActivity {
         resultbox.append(",");
     }
 
+
     public void ClearPressed(View v) {
         TextView resultbox = (TextView) findViewById(R.id.resultBox);
         resultbox.setText("");

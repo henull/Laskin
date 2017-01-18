@@ -7,6 +7,9 @@
     <string name="minus">-</string>
     <string name="mult">*</string>
     <string name="div">/</string>
-    <string name="comma">,</string>
+    <string name="comma">.</string>
+    <string name="menubutton">...</string>
+    <string name="menuabout">About</string>
+    <string name="menuhelp">Help</string>
 
 </resources>

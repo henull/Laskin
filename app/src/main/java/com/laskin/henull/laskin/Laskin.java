@@ -1,21 +1,21 @@
 package com.laskin.henull.laskin;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.widget.Toast;
-
 import com.udojava.evalex.Expression;
-
-import static com.udojava.evalex.Expression.e;
 
 
 public class Laskin extends AppCompatActivity {
+    public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     private String calculation = "";
     //private List<Double> lukulista = new ArrayList<Double>();
@@ -25,6 +25,35 @@ public class Laskin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laskin);
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                Toast t1 = Toast.makeText(this, "ABOUT", Toast.LENGTH_SHORT);
+                t1.show();
+                Intent intent = new Intent(this, AboutActivity.class);
+                String message = "(C) Hermanni Mäkitalo";
+                intent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(intent);
+                return true;
+            case R.id.help:
+                Toast t2 = Toast.makeText(this, "HELP", Toast.LENGTH_SHORT);
+                t2.show();
+                Intent i2 = new Intent(this, HelpActivity.class);
+                String m2 = "HALP";
+                i2.putExtra(EXTRA_MESSAGE, m2);
+                startActivity(i2);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void NumberPressed(View v) {
@@ -77,26 +106,18 @@ public class Laskin extends AppCompatActivity {
             Toast t = Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
             t.show();
         }
-        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
-        dlgAlert.setMessage(result.toString());
-        dlgAlert.setTitle("Result");
-        dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                resultbox.setText(""); //TODO: siirrä vastaus ylempään textviewiin lasku+"="+result
-            }
-        });
-        dlgAlert.show();
+        resultbox.setText(result.toString());
     }
 
     public void CommaPressed(View v){
         TextView resultbox = (TextView) findViewById(R.id.resultBox);
-        resultbox.append(",");
+        resultbox.append(".");
     }
-
 
     public void ClearPressed(View v) {
         TextView resultbox = (TextView) findViewById(R.id.resultBox);
-        resultbox.setText("");
+        String temp = resultbox.getText().toString();
+        resultbox.setText(temp.substring(0,temp.length()-1));
     }
 
     public void ClearallPressed(View v) {

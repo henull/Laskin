@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.View;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.udojava.evalex.Expression;
@@ -55,7 +54,7 @@ public class Laskin extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    //region Buttons
     public void NumberPressed(View v) {
         TextView resultbox = (TextView) findViewById(R.id.resultBox);
 
@@ -142,5 +141,6 @@ public class Laskin extends AppCompatActivity {
             calculation += "*";
         }
     }
+//endregion
 
 }

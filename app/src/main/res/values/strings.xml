@@ -11,5 +11,6 @@
     <string name="menubutton">...</string>
     <string name="menuabout">About</string>
     <string name="menuhelp">Help</string>
-
+    <string name="helpGetButton">GET!</string>
+    <string name="helpClearButton">Clear</string>
 </resources>
